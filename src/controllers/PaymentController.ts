@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import mercadopago from "mercadopago";
 
-mercadopago.configurations.setAccessToken(
-  process.env.REACT_APP_MP_ACCESS_TOKEN
-);
+mercadopago.configurations.setAccessToken(process.env.ACCESS_TOKEN);
 
 export = {
   async process(req: Request, res: Response) {
@@ -16,9 +14,13 @@ export = {
       issuerId,
       payer,
     } = req.body;
+    console.log(
+      "🚀 ~ file: PaymentController.ts ~ line 19 ~ process ~ req.body",
+      req.body
+    );
 
     const payment_data = {
-      transaction_amount: Number(transactionAmount),
+      transaction_amount: 1, // CALCULAR VALOR DA COMPRA
       token: token,
       description: description,
       installments: Number(installments),
@@ -36,6 +38,10 @@ export = {
     mercadopago.payment
       .save(payment_data)
       .then(function (response) {
+        console.log(
+          "🚀 ~ file: PaymentController.ts ~ line 43 ~ response",
+          response
+        );
         res.status(response.status).json({
           status: response.body.status,
           message: response.body.status_detail,
@@ -43,6 +49,10 @@ export = {
         });
       })
       .catch(function (error) {
+        console.log(
+          "🚀 ~ file: PaymentController.ts ~ line 51 ~ process ~ error",
+          error
+        );
         res.status(error.status).send(error);
       });
   },
