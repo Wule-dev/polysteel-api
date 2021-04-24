@@ -21,13 +21,14 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "yarn build && node dist/src/index.js",
+    "start": "npm run build && node dist/src/index.js",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/index.ts",
     "test": "jest"
   },
   "dependencies": {
     "@types/jest": "^26.0.15",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/mercadopago": "^1.5.3",
     "@types/mongoose": "^5.7.37",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
@@ -38,6 +39,7 @@
     "eslint-plugin-import": "2.21.2",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.7",
     "mongoose": "^5.10.11",
     "nodemailer": "^6.4.14",
     "uuid": "^8.3.1"
